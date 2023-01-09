@@ -1,5 +1,10 @@
 /// <reference types="cypress" />
 let dadosLogin
+const { faker } = require('@faker-js/faker');
+const { default: cadastroPage } = require('../support/page_objects/cadastro.page');
+import CadastroPage from '../support/page_objects/cadastro.page'
+
+
 
 context('Funcionalidade Login', () => {
     before(() => {
@@ -12,9 +17,9 @@ context('Funcionalidade Login', () => {
         cy.visit('minha-conta')
     });
 
-    afterEach(() => {
-        cy.screenshot()
-    });
+   // afterEach(() => {
+     //   cy.screenshot()
+    //});
 
     it('Login com sucesso usando Comando customizado', () => {
         cy.login(dadosLogin.usuario, dadosLogin.senha)
@@ -28,11 +33,19 @@ context('Funcionalidade Login', () => {
         cy.get('.page-title').should('contain', 'Minha conta')
     });
 
-    it('Deve fazer login com sucesso - sem otimização', () => {
+    it.only('Deve fazer login com sucesso - sem otimização', () => {
         cy.get('#username').type(dadosLogin.usuario)
         cy.get('#password').type(dadosLogin.senha, { log: false })
         cy.get('.woocommerce-form > .button').click()
         cy.get('.page-title').should('contain', 'Minha conta')
-        cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain', 'Olá, aluno_ebac')
+        cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain', 'Olá, Jenkins')
     })
+
+    // Utilizando Page Object
+    it('Criação de usuário utilizando Faker', () => {
+        CadastroPage.cadastroUsuario()
+        cy.get('.woocommerce-message').contains('Detalhes da conta modificados com sucesso.')
+    });
+
+    
 })
