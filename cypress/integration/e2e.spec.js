@@ -26,6 +26,7 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
 
     // Cenário Utilizando Comando customizado
     it('Deve fazer um pedido na loja Ebac Shop de ponta a ponta', () => {
+        cy.get('ul.page-numbers > :nth-child(2)').click()
         cy.get('[class="product-block grid"]')
             .contains('Atlas Fitness Tank').click()
         cy.get('.button-variable-item-M').click()

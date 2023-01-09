@@ -3,7 +3,7 @@ class EnderecoPage {
 
     comprarProdutoLoja(quantidade) {
        
-        
+        cy.get('ul.page-numbers > :nth-child(2)').click()
         cy.get('[class="product-block grid"]')
             .contains('Atlas Fitness Tank').click()
         cy.get('.button-variable-item-M').click()
