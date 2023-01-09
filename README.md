@@ -50,5 +50,8 @@ Fábio & José Ernesto
 Qualidade de software
 
 
+RESPOSTA- TIAGO FLOR: EXERCICIO CONCLUIDO
+
+
 
 
